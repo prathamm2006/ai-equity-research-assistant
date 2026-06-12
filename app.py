@@ -7,7 +7,9 @@ st.set_page_config(page_title="AI-Powered Equity & Business Research Assistant",
 st.title("📊 AI-Powered Equity & Business Research Assistant")
 
 with st.sidebar:
-    api_key = st.text_input("Gemini API Key", type="password")
+    api_key = st.text_input("Gemini API Key (optional if set in secrets)", type="password")
+    if not api_key:
+        api_key = st.secrets.get("GEMINI_API_KEY", "")
     company = st.text_input("Company Name", "Tata Motors")
     uploaded_pdf = st.file_uploader("Upload Annual Report (PDF)", type="pdf")
     run_btn = st.button("Run Research")
